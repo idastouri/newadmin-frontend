@@ -1,5 +1,4 @@
 function HomeController() {
-  console.log('HomeController');
 }
 
 HomeController.$inject = [];

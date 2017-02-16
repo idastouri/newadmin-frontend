@@ -1,5 +1,4 @@
 function PostsController() {
-  console.log('PostController');
 }
 
 PostsController.$inject = [];
