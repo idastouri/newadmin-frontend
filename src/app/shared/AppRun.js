@@ -25,6 +25,8 @@ function AppRun($rootScope, $state, _) {
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
     $rootScope.viewLoading = false;
   });
+
+  $rootScope.brandId = 'events';
 }
 
 AppRun.$inject = ['$rootScope', '$state', '_'];
