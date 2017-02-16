@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="CrazeAdmin" ng-controller="AppController as app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Craze Admin</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+</head>
+<body ng-class="{'view-loading': viewLoading}">
+    <div class="wrapper">
+      <layout-header></layout-header>
+
+      <main id="content" ui-view="main" ng-class="{ 'view-loading': viewLoading }">
+      </main>
+
+      <layout-footer></layout-footer>
+    </div>
+
+    <span id="ui-router-loading" ng-show="viewLoading" us-spinner="{ width: 3, length: 10, radius: 10 }"></span>
+
+    <toaster-container toaster-options="{
+        'close-button': true,
+        'position-class': 'toast-top-center',
+        'time-out': 5000
+    }">
+    </toaster-container>
+</body>
+</html>
