@@ -27,6 +27,7 @@ function AppRun($rootScope, $state, _, Config) {
 
   // Set current environment as default from the Config
   $rootScope.currentEnv = Config.defaultEnv;
+  $rootScope.currentBrand = Config.defaultBrand;
 }
 
 AppRun.$inject = ['$rootScope', '$state', '_', 'Config'];
