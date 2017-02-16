@@ -12,7 +12,19 @@ function SignInController(UserService) {
     this.env = defaultEnv;
   };
 
-  this.login = UserService.login;
+  this.login = (credentials) => {
+    UserService.login(credentials)
+    .catch((serverError) => {
+      this.signInForm.$setValidity('serverError', false);
+      this.serverError = serverError;
+    })
+  }
+
+  this.onInputChange = () => {
+    if (this.signInForm.$error.serverError) {
+      this.signInForm.$setValidity('serverError', true);
+    }
+  }
 }
 
 SignInController.$inject = ['UserService'];
