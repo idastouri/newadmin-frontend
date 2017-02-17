@@ -52,7 +52,7 @@ function UserService($http, $log, $q, $rootScope, Config) {
     },
 
     setUserData(userData) {
-      this.user = angular.copy(userData);
+      this.user = $rootScope.currentUser = angular.copy(userData);
     }
   }
 }

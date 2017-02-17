@@ -9,7 +9,7 @@
 </head>
 <body ng-class="{'view-loading': viewLoading}" class="{{ currentEnv.name | lowercase }}">
     <div class="wrapper">
-      <layout-header></layout-header>
+      <layout-header env="currentEnv.name" brand="currentBrand" show-nav="!!currentUser"></layout-header>
 
       <main ui-view ng-class="{ 'view-loading': viewLoading }" class="container-fluid">
       </main>
