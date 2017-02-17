@@ -4,17 +4,17 @@ const signIn = {
   controller: SignInController
 }
 
-function SignInController(UserService) {
+function SignInController(UserService, $rootScope) {
   const defaultEnv = 'Dev';
 
   this.$onInit = () => {
     this.credentials = {};
-    this.env = defaultEnv;
+    $rootScope.env = defaultEnv;
   };
 
   this.login = UserService.login;
 }
 
-SignInController.$inject = ['UserService'];
+SignInController.$inject = ['UserService', '$rootScope'];
 
 export default signIn;
