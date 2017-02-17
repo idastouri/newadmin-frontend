@@ -13,8 +13,6 @@ function HeaderController(Config) {
   this.$onInit = () => {
     this.brands = Config.brands;
   }
-
-  setInterval(()=>console.log(this.showNav), 500)
 }
 
 HeaderController.$inject = ['Config']
