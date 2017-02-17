@@ -1,7 +1,6 @@
 const signIn = {
   restrict: 'E',
   bindings: {
-    envs: '<',
     env: '<',
     onEnvUpdate: '&'
   },
@@ -9,9 +8,10 @@ const signIn = {
   controller: SignInController
 }
 
-function SignInController(UserService) {
+function SignInController(UserService, Config) {
   this.$onInit = () => {
     this.credentials = {};
+    this.envs = Config.envs;
   };
 
   this.login = (credentials) => {
@@ -37,6 +37,6 @@ function SignInController(UserService) {
   }
 }
 
-SignInController.$inject = ['UserService'];
+SignInController.$inject = ['UserService', 'Config'];
 
 export default signIn;

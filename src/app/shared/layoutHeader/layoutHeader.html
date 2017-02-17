@@ -1,9 +1,29 @@
 <header>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="title">Craze Admin</div>
+  <nav class="navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="home">Craze Admin</a>
       </div>
+      <span ng-if="$ctrl.showNav">
+        <ul class="nav navbar-nav">
+          <li ui-sref-active="active"><a ui-sref="home">Dashboard</a></li>
+          <li><a href="#">Users</a></li>
+          <li><a href="#">Channels</a></li>
+          <li><a href="#">Posts</a></li>
+          <li><a href="#">Topics</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <select
+              class="form-control brand-select"
+              ng-model="$ctrl.brand"
+              ng-options="brand for brand in $ctrl.brands"
+            ></select>
+          </li>
+          <li><a href="#">Environment: {{ $ctrl.env | lowercase }}</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+      </span>
     </div>
-  </div>
+  </nav>
 </header>

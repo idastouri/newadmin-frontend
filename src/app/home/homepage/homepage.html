@@ -1,12 +1,11 @@
 <div class="homepage">
   <sign-in
     ng-if="!$ctrl.UserService.user"
-    envs="$ctrl.Config.envs"
     env="$ctrl.env"
     on-env-update="$ctrl.updateEnv($event)"
   ></sign-in>
 
-  <div ng-if="$ctrl.UserService.user">
+  <div ng-if="$ctrl.UserService.user" class="welcome-message">
     Welcome, {{ $ctrl.UserService.user.username }}
   </div>
 </div>

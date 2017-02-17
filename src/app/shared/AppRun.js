@@ -1,4 +1,4 @@
-function AppRun($rootScope, $state, _, Config) {
+function AppRun($rootScope, $state, _, Config, UserService) {
   // define some helper methods for use in routing config below
   const routingHelper = {
     isCurrentState(toState, toParams) {
@@ -27,8 +27,10 @@ function AppRun($rootScope, $state, _, Config) {
 
   // Set current environment as default from the Config
   $rootScope.currentEnv = Config.defaultEnv;
+  $rootScope.currentBrand = Config.defaultBrand;
+  $rootScope.currentUser = UserService.user;
 }
 
-AppRun.$inject = ['$rootScope', '$state', '_', 'Config'];
+AppRun.$inject = ['$rootScope', '$state', '_', 'Config', 'UserService'];
 
 export default AppRun;
