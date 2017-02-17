@@ -1,7 +1,7 @@
-function PostsController($scope, posts) {
+function PostsController(posts) {
   this.posts = posts;
 }
 
-PostsController.$inject = ['$scope', 'posts'];
+PostsController.$inject = ['posts'];
 
 export default PostsController;

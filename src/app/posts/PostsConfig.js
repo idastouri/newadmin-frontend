@@ -5,7 +5,7 @@ function PostsConfig($stateProvider) {
       views: {
         'main@': {
           controller: 'PostsController as posts',
-          template: '<posts-list posts="lololo"></posts-list>'
+          template: '<posts-list posts="posts.posts.postJson"></posts-list>'
         }
       },
       resolve: {

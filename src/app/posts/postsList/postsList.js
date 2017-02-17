@@ -2,15 +2,14 @@ const postsList = {
   restrict: 'E',
   template: require('./postsList.html'),
   bindings: {
-    posts: '@'
+    posts: '<'
   },
   controller: PostsListController
 }
 
 function PostsListController() {
-  console.log(this.posts);
 }
 
-PostsListController.$inject = ['$scope'];
+PostsListController.$inject = [];
 
 export default postsList;
