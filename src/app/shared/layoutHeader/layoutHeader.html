@@ -21,7 +21,7 @@
             ></select>
           </li>
           <li><a href="#">Environment: {{ $ctrl.env | lowercase }}</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+          <li><a ng-click="$ctrl.logout()" href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
       </span>
     </div>

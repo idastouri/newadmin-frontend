@@ -1,4 +1,4 @@
-function AppRun($rootScope, $state, _, Config, UserService) {
+function AppRun($rootScope, $state, $cookieStore, _, Config, UserService) {
   // define some helper methods for use in routing config below
   const routingHelper = {
     isCurrentState(toState, toParams) {
@@ -25,12 +25,17 @@ function AppRun($rootScope, $state, _, Config, UserService) {
     $rootScope.viewLoading = false;
   });
 
+  if ($cookieStore.get('currentUser')) {
+    UserService.setUserData($cookieStore.get('currentUser'));
+    UserService.setSessionToken($cookieStore.get('sessionToken'));
+  }
+
   // Set current environment as default from the Config
   $rootScope.currentEnv = Config.defaultEnv;
   $rootScope.currentBrand = Config.defaultBrand;
   $rootScope.currentUser = UserService.user;
 }
 
-AppRun.$inject = ['$rootScope', '$state', '_', 'Config', 'UserService'];
+AppRun.$inject = ['$rootScope', '$state', '$cookieStore', '_', 'Config', 'UserService'];
 
 export default AppRun;

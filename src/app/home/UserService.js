@@ -1,4 +1,4 @@
-function UserService($http, $log, $q, $rootScope, Config) {
+function UserService($http, $log, $q, $rootScope, $cookieStore, Config) {
   return {
     user: null,
     sessionToken: '',
@@ -29,6 +29,10 @@ function UserService($http, $log, $q, $rootScope, Config) {
           if (this.userHasAccessRights(userData)) {
             this.setSessionToken(data.sessionToken);
             this.setUserData(userData);
+
+            $cookieStore.put('currentUser', userData);
+            $cookieStore.put('sessionToken', data.sessionToken);
+
           } else {
             return $q.reject(Config.messages.errors.accessRightsError);
           }
@@ -36,6 +40,16 @@ function UserService($http, $log, $q, $rootScope, Config) {
           return $q.reject(data.msg);
         }
       })
+    },
+
+    logout() {
+
+      /* TO DO: logout code */
+
+      $cookieStore.remove('currentUser');
+      $cookieStore.remove('sessionToken');
+
+      location.reload();
     },
 
     userHasAccessRights(userData) {
@@ -57,6 +71,6 @@ function UserService($http, $log, $q, $rootScope, Config) {
   }
 }
 
-UserService.$inject = ['$http', '$log', '$q', '$rootScope', 'Config'];
+UserService.$inject = ['$http', '$log', '$q', '$rootScope', '$cookieStore', 'Config'];
 
 export default UserService;
