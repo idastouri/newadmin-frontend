@@ -1,26 +1,30 @@
-function PostsService($http, ApiUrl, $log) {
+function PostsService($http, $rootScope, UserService) {
   return {
     getPosts() {
+      $rootScope.viewLoading = true;
+
       const params = {
-        sessionToken: '4bc9ce361611fbbed32fbf86ece79076',
-        userId: '31057',
+        sessionToken: UserService.sessionToken,
+        userId: UserService.user.userId,
+        brandId: $rootScope.currentBrand,
         offset: 0,
-        limit: 5,
-        brandId: 'Events'
+        limit: 5
       };
 
       return $http({
         method: 'POST',
-        url: `${ApiUrl}/posts/getPostsByCategory`,
+        url: `${$rootScope.currentEnv.apiUrl}/posts/getPostsByCategory`,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         data: $.param(params)
+      }).finally(() => {
+        $rootScope.viewLoading = false;
       });
     }
   }
 }
 
-PostsService.$inject = ['$http', 'ApiUrl', '$log'];
+PostsService.$inject = ['$http', '$rootScope', 'UserService'];
 
 export default PostsService;

@@ -9,15 +9,16 @@
           <li ui-sref-active="active"><a ui-sref="home">Dashboard</a></li>
           <li><a href="#">Users</a></li>
           <li><a href="#">Channels</a></li>
-          <li><a href="#">Posts</a></li>
+          <li><a ui-sref="posts">Posts</a></li>
           <li><a href="#">Topics</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
             <select
               class="form-control brand-select"
-              ng-model="$ctrl.brand"
+              ng-model="$root.currentBrand"
               ng-options="brand for brand in $ctrl.brands"
+              ng-change="$ctrl.brandChange()"
             ></select>
           </li>
           <li><a href="#">Environment: {{ $ctrl.env | lowercase }}</a></li>

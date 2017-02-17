@@ -9,12 +9,16 @@ const layoutHeader = {
   controller: HeaderController
 }
 
-function HeaderController(Config) {
+function HeaderController(Config, $rootScope) {
   this.$onInit = () => {
     this.brands = Config.brands;
   }
+
+  this.brandChange = () => {
+    $rootScope.$broadcast('brandChange');
+  }
 }
 
-HeaderController.$inject = ['Config']
+HeaderController.$inject = ['Config', '$rootScope']
 
 export default layoutHeader;
