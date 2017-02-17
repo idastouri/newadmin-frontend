@@ -5,9 +5,14 @@ function PostsConfig($stateProvider) {
       views: {
         'main@': {
           controller: 'PostsController as posts',
-          template: '<posts-list></posts-list>'
+          template: '<posts-list posts="lololo"></posts-list>'
         }
       },
+      resolve: {
+        posts(PostsService) {
+          return PostsService.getPosts().then((res) => res.data);
+        }
+      }
     })
 }
 
