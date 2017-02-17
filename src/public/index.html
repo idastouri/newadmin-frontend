@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/">
 </head>
-<body ng-class="{'view-loading': viewLoading}">
+<body ng-class="{'view-loading': viewLoading}" class="{{ currentEnv.name | lowercase }}">
     <div class="wrapper">
       <layout-header></layout-header>
 
-      <main id="content" ui-view="main" ng-class="{ 'view-loading': viewLoading }">
+      <main ui-view ng-class="{ 'view-loading': viewLoading }">
       </main>
 
       <layout-footer></layout-footer>

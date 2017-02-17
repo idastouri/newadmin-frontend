@@ -1,21 +1,30 @@
 <div class="row sign-in">
-  <form novalidate class="col-xs-12 col-sm-4 col-lg-3 center-block">
+  <form novalidate class="col-xs-12 col-sm-4 col-lg-3 center-block sign-in__form" name="$ctrl.signInForm">
+    <div ng-show="$ctrl.signInForm.$error.serverError" class="server-error">{{ $ctrl.serverError }}</div>
+
     <div class="form-group">
-      <input type="text" class="form-control" ng-model="$ctrl.credentials.username" placeholder="Username">
+      <input type="text" class="form-control" ng-model="$ctrl.credentials.username" placeholder="Username" required ng-change="$ctrl.onInputChange()">
     </div>
 
     <div class="form-group">
-      <input type="password" class="form-control" ng-model="$ctrl.credentials.password" placeholder="Password">
+      <input type="password" class="form-control" ng-model="$ctrl.credentials.password" placeholder="Password" required ng-change="$ctrl.onInputChange()">
     </div>
 
     <div class="form-group">
-      <select class="form-control" placeholder="Env" ng-model="$ctrl.env">
-        <option value="Dev">Dev</option>
-        <option value="Stage">Stage</option>
-         <option value="Production">Production</option>
-      </select>
+      <select
+        class="form-control"
+        ng-model="$ctrl.env"
+        ng-options="env.name for env in $ctrl.envs"
+        ng-change="$ctrl.onInputChange() || $ctrl.updateEnv()"
+      ></select>
     </div>
 
-    <button type="submit" class="btn btn-default" ng-click="$ctrl.login($ctrl.credentials)">Login</button>
+    <button
+      type="submit"
+      class="btn btn-default btn__sign-in"
+      ng-click="$ctrl.login($ctrl.credentials)"
+      ng-disabled="$ctrl.signInForm.$invalid"
+      ng-class="{'btn-danger': $ctrl.signInForm.$error.serverError}"
+    >Login</button>
   </form>
 </div>
