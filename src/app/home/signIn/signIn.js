@@ -1,15 +1,17 @@
 const signIn = {
   restrict: 'E',
+  bindings: {
+    envs: '<',
+    env: '<',
+    onEnvUpdate: '&'
+  },
   template: require('./signIn.html'),
   controller: SignInController
 }
 
 function SignInController(UserService) {
-  const defaultEnv = 'Dev';
-
   this.$onInit = () => {
     this.credentials = {};
-    this.env = defaultEnv;
   };
 
   this.login = (credentials) => {
@@ -24,6 +26,14 @@ function SignInController(UserService) {
     if (this.signInForm.$error.serverError) {
       this.signInForm.$setValidity('serverError', true);
     }
+  }
+
+  this.updateEnv = () => {
+    this.onEnvUpdate({
+      $event: {
+        env: this.env
+      }
+    })
   }
 }
 
