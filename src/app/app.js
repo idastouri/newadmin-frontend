@@ -14,7 +14,7 @@ import AppController from './shared/AppController';
 import layoutHeader from './shared/layoutHeader/layoutHeader';
 import layoutFooter from './shared/layoutFooter/layoutFooter';
 
-import ApiUrl from './shared/ApiUrl';
+import Config from './shared/Config';
 
 import AppConfig from './shared/AppConfig';
 import AppRun from './shared/AppRun';
@@ -41,7 +41,7 @@ angular.module(MODULE_NAME, [
   .component('layoutHeader', layoutHeader)
   .component('layoutFooter', layoutFooter)
 
-  .constant('ApiUrl', ApiUrl)
+  .constant('Config', Config)
 
   .config(AppConfig)
 

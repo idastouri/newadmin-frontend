@@ -1,20 +1,42 @@
 const signIn = {
   restrict: 'E',
+  bindings: {
+    env: '<',
+    onEnvUpdate: '&'
+  },
   template: require('./signIn.html'),
   controller: SignInController
 }
 
-function SignInController(UserService, $rootScope) {
-  const defaultEnv = 'Dev';
-
+function SignInController(UserService, Config) {
   this.$onInit = () => {
     this.credentials = {};
-    $rootScope.env = defaultEnv;
+    this.envs = Config.envs;
   };
 
-  this.login = UserService.login;
+  this.login = (credentials) => {
+    UserService.login(credentials)
+    .catch((serverError) => {
+      this.signInForm.$setValidity('serverError', false);
+      this.serverError = serverError;
+    })
+  }
+
+  this.onInputChange = () => {
+    if (this.signInForm.$error.serverError) {
+      this.signInForm.$setValidity('serverError', true);
+    }
+  }
+
+  this.updateEnv = () => {
+    this.onEnvUpdate({
+      $event: {
+        env: this.env
+      }
+    })
+  }
 }
 
-SignInController.$inject = ['UserService', '$rootScope'];
+SignInController.$inject = ['UserService', 'Config'];
 
 export default signIn;

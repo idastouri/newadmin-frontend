@@ -2,31 +2,28 @@
   <nav class="navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Craze Admin</a>
+        <a class="navbar-brand" ui-sref="home">Craze Admin</a>
       </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dashboard</a></li>
-        <li><a href="#">Users</a></li>
-        <li><a href="#">Channels</a></li>
-        <li><a ui-sref="posts">Posts</a></li>
-        <li><a href="#">Topics</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <select ng-model="$root.brandId" class="form-control select-brand" id="sel1">
-            <option value="travel">Travel</option>
-            <option value="beauty">Beauty</option>
-            <option value="events">Events</option>
-            <option value="food">Food</option>
-            <option value="home">Home</option>
-            <option value="fashion">Fashion</option>
-            <option value="style">Style</option>
-            <option value="fitness">Fitness</option>
-          </select>
-        </li>
-        <li><a href="#">Environment : {{ $root.env }}</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-      </ul>
+      <span ng-if="$ctrl.showNav">
+        <ul class="nav navbar-nav">
+          <li ui-sref-active="active"><a ui-sref="home">Dashboard</a></li>
+          <li><a href="#">Users</a></li>
+          <li><a href="#">Channels</a></li>
+          <li><a href="#">Posts</a></li>
+          <li><a href="#">Topics</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <select
+              class="form-control brand-select"
+              ng-model="$ctrl.brand"
+              ng-options="brand for brand in $ctrl.brands"
+            ></select>
+          </li>
+          <li><a href="#">Environment: {{ $ctrl.env | lowercase }}</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+      </span>
     </div>
   </nav>
 </header>
