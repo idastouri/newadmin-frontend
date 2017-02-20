@@ -5,7 +5,7 @@ const Config = Object.freeze({
       apiUrl: 'http://apidev.namoncraze.com',
       adminIds: ["31057"],
       superadminIds: [],
-      titleColor: '#408000',
+      titleColor: '#339933',
     },
     stage: {
       name: 'Stage',

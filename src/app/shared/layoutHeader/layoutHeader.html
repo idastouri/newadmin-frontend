@@ -1,8 +1,8 @@
 <header>
   <nav class="navbar-default">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="home" style="color: {{ $ctrl.envs[$ctrl.env.toLowerCase()].titleColor; }}">Craze Admin</a>
+      <div class="navbar-header" style="background-color: {{ $ctrl.envs[$ctrl.env.toLowerCase()].titleColor; }}">
+        <a class="navbar-brand" ui-sref="home">Craze Admin</a>
       </div>
       <span ng-if="$ctrl.showNav">
         <ul class="nav navbar-nav">
@@ -21,7 +21,7 @@
             ></select>
           </li>
           <li><a href="#">Environment: {{ $ctrl.env | lowercase }}</a></li>
-          <li><a ng-click="$ctrl.logout()" href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+          <li><a href="#" ng-click="$ctrl.logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
       </span>
     </div>

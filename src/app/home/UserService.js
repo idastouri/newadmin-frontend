@@ -1,4 +1,4 @@
-function UserService($http, $log, $q, $rootScope, $cookies, Config) {
+function UserService($http, $log, $q, $rootScope, $cookies, Config, toaster) {
   return {
     user: null,
     sessionToken: '',
@@ -39,17 +39,43 @@ function UserService($http, $log, $q, $rootScope, $cookies, Config) {
         } else {
           return $q.reject(data.msg);
         }
+      }, (response) => {
+        $log.log(`Server error UserService.login(): ${response.status} ${response.message}`);
+        toaster.error(response.status, response.message);
       })
     },
 
     logout() {
+      var params = { userId: this.user.userId, sessionToken: this.sessionToken };
 
-      /* TO DO: logout code */
+      $log.log(`Request params: ${JSON.stringify(params)}`);
 
-      $cookies.remove('currentUser');
-      $cookies.remove('sessionToken');
+      this.pending = true;
 
-      location.reload();
+      return $http({
+        method: 'POST',
+        url: `${$rootScope.currentEnv.apiUrl}/users/logout`,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: $.param(params)
+      })
+      .then(({data}) => {
+        $log.log(`Response: ${JSON.stringify(data)}`);
+
+        this.pending = false;
+
+        if (data._responseStatus === 1) {
+          this.user = this.sessionToken = $rootScope.currentUser = null;
+          $cookies.remove('currentUser');
+          $cookies.remove('sessionToken');
+        } else {
+          return $q.reject(data.msg);
+        }
+      }, (response) => {
+        $log.log(`Server error UserService.logout(): ${response.status} ${response.message}`);
+        toaster.error(response.status, response.message);
+      });
     },
 
     userHasAccessRights(userData) {
@@ -71,6 +97,6 @@ function UserService($http, $log, $q, $rootScope, $cookies, Config) {
   }
 }
 
-UserService.$inject = ['$http', '$log', '$q', '$rootScope', '$cookies', 'Config'];
+UserService.$inject = ['$http', '$log', '$q', '$rootScope', '$cookies', 'Config', 'toaster'];
 
 export default UserService;
