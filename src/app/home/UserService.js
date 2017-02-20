@@ -1,4 +1,4 @@
-function UserService($http, $log, $q, $rootScope, $cookies, Config) {
+function UserService($http, $log, $q, $rootScope, $cookies, Config, toaster) {
   return {
     user: null,
     sessionToken: '',
@@ -41,7 +41,7 @@ function UserService($http, $log, $q, $rootScope, $cookies, Config) {
         }
       }, (response) => {
         $log.log(`Server error UserService.login(): ${response.status} ${response.message}`);
-        alert(`Server error UserService.login(): ${response.status} ${response.message}`);
+        toaster.error(response.status, response.message);
       })
     },
 
@@ -72,9 +72,9 @@ function UserService($http, $log, $q, $rootScope, $cookies, Config) {
         } else {
           return $q.reject(data.msg);
         }
-      }, (responce) => {
+      }, (response) => {
         $log.log(`Server error UserService.logout(): ${response.status} ${response.message}`);
-        alert(`Server error UserService.logout(): ${response.status}, ${response.message}`);
+        toaster.error(response.status, response.message);
       });
     },
 
@@ -97,6 +97,6 @@ function UserService($http, $log, $q, $rootScope, $cookies, Config) {
   }
 }
 
-UserService.$inject = ['$http', '$log', '$q', '$rootScope', '$cookies', 'Config'];
+UserService.$inject = ['$http', '$log', '$q', '$rootScope', '$cookies', 'Config', 'toaster'];
 
 export default UserService;
