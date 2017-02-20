@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';
 import 'angular-animate';
+import 'angular-cookies';
 import 'angular-touch';
 import 'angularjs-toaster';
 import 'angular-spinner';
@@ -29,6 +30,7 @@ angular.module(MODULE_NAME, [
   'ui.bootstrap',
   'ngAnimate',
   'ngTouch',
+  'ngCookies',
   'toaster',
   'angularSpinner',
   'underscore',

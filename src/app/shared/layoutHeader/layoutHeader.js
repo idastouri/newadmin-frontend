@@ -9,16 +9,19 @@ const layoutHeader = {
   controller: HeaderController
 }
 
-function HeaderController(Config, $rootScope) {
+function HeaderController(Config, UserService, $rootScope) {
   this.$onInit = () => {
     this.brands = Config.brands;
+    this.envs = Config.envs;
   }
 
   this.brandChange = () => {
     $rootScope.$broadcast('brandChange');
   }
+
+  this.logout = UserService.logout;
 }
 
-HeaderController.$inject = ['Config', '$rootScope']
+HeaderController.$inject = ['Config', 'UserService', '$rootScope'];
 
 export default layoutHeader;
