@@ -9,12 +9,14 @@ const layoutHeader = {
   controller: HeaderController
 }
 
-function HeaderController(Config) {
+function HeaderController(Config, UserService) {
   this.$onInit = () => {
     this.brands = Config.brands;
   }
+
+  this.logout = UserService.logout;
 }
 
-HeaderController.$inject = ['Config']
+HeaderController.$inject = ['Config', 'UserService'];
 
 export default layoutHeader;
