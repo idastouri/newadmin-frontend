@@ -12,16 +12,18 @@ const layoutHeader = {
 function HeaderController(Config, UserService) {
   this.$onInit = () => {
     this.brands = Config.brands;
+    this.envs = Config.envs;
   };
 
   this.logout = () => {
     UserService.logout()
     .catch((serverError) => {
-      alert(`Server error: ${serverError}`);
+      alert(`Server error logout(): ${serverError}`);
     });
   }
 }
 
-HeaderController.$inject = ['Config', 'UserService']
+
+HeaderController.$inject = ['Config', 'UserService'];
 
 export default layoutHeader;

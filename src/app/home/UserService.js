@@ -1,4 +1,4 @@
-function UserService($http, $log, $q, $rootScope, Config) {
+function UserService($http, $log, $q, $rootScope, $cookies, Config) {
   return {
     user: null,
     sessionToken: '',
@@ -29,12 +29,19 @@ function UserService($http, $log, $q, $rootScope, Config) {
           if (this.userHasAccessRights(userData)) {
             this.setSessionToken(data.sessionToken);
             this.setUserData(userData);
+
+            $cookies.putObject('currentUser', this.user);
+            $cookies.put('sessionToken', this.sessionToken);
+
           } else {
             return $q.reject(Config.messages.errors.accessRightsError);
           }
         } else {
           return $q.reject(data.msg);
         }
+      }, (response) => {
+        $log.log(`Server error UserService.login(): ${response.status} ${response.message}`);
+        alert(`Server error UserService.login(): ${response.status} ${response.message}`);
       })
     },
 
@@ -60,12 +67,14 @@ function UserService($http, $log, $q, $rootScope, Config) {
 
         if (data._responseStatus === 1) {
           this.user = this.sessionToken = $rootScope.currentUser = null;
-          //
-          //  Paste the cookie-remove code here
-          //
+          $cookies.remove('currentUser');
+          $cookies.remove('sessionToken');
         } else {
           return $q.reject(data.msg);
         }
+      }, (responce) => {
+        $log.log(`Server error UserService.logout(): ${response.status} ${response.message}`);
+        alert(`Server error UserService.logout(): ${response.status}, ${response.message}`);
       });
     },
 
@@ -88,6 +97,6 @@ function UserService($http, $log, $q, $rootScope, Config) {
   }
 }
 
-UserService.$inject = ['$http', '$log', '$q', '$rootScope', 'Config'];
+UserService.$inject = ['$http', '$log', '$q', '$rootScope', '$cookies', 'Config'];
 
 export default UserService;
