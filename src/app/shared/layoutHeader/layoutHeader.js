@@ -12,6 +12,7 @@ const layoutHeader = {
 function HeaderController(Config, UserService) {
   this.$onInit = () => {
     this.brands = Config.brands;
+    this.envs = Config.envs;
   }
 
   this.logout = UserService.logout;
