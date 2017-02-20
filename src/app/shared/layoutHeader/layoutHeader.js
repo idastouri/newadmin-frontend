@@ -12,6 +12,7 @@ const layoutHeader = {
 function HeaderController(Config) {
   this.$onInit = () => {
     this.brands = Config.brands;
+    this.envs = Config.envs;
   }
 }
 

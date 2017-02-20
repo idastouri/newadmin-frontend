@@ -14,7 +14,7 @@
       <select
         class="form-control"
         ng-model="$ctrl.env"
-        ng-options="env.name for env in $ctrl.envs"
+        ng-options="env.name for (key, env) in $ctrl.envs"
         ng-change="$ctrl.onInputChange() || $ctrl.updateEnv()"
       ></select>
     </div>
