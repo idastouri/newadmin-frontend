@@ -38,6 +38,37 @@ function UserService($http, $log, $q, $rootScope, Config) {
       })
     },
 
+    logout() {
+      var params = { userId: this.user.userId, sessionToken: this.sessionToken };
+
+      $log.log(`Request params: ${JSON.stringify(params)}`);
+
+      this.pending = true;
+
+      return $http({
+        method: 'POST',
+        url: `${$rootScope.currentEnv.apiUrl}/users/logout`,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: $.param(params)
+      })
+      .then(({data}) => {
+        $log.log(`Response: ${JSON.stringify(data)}`);
+
+        this.pending = false;
+
+        if (data._responseStatus === 1) {
+          this.user = this.sessionToken = $rootScope.currentUser = null;
+          //
+          //  Paste the cookie-remove code here
+          //
+        } else {
+          return $q.reject(data.msg);
+        }
+      });
+    },
+
     userHasAccessRights(userData) {
       function checkAccessRights(adminId) {
         return adminId === userData.userId;
