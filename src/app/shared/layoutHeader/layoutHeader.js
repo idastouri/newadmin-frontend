@@ -9,22 +9,25 @@ const layoutHeader = {
   controller: HeaderController
 }
 
-function HeaderController(Config, UserService, toaster) {
+function HeaderController(Config, UserService, $rootScope, toaster) {
   this.$onInit = () => {
     this.brands = Config.brands;
     this.envs = Config.envs;
   };
 
+  this.brandChange = () => {
+    $rootScope.$broadcast('brandChange');
+  }
+
   this.logout = () => {
     UserService.logout()
     .catch((serverError) => {
-      console.log('toaster');
       toaster.error('Oops', serverError);
     });
   }
 }
 
+HeaderController.$inject = ['Config', 'UserService', '$rootScope', 'toaster'];
 
-HeaderController.$inject = ['Config', 'UserService', 'toaster'];
 
 export default layoutHeader;

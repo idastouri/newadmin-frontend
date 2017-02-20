@@ -21,6 +21,7 @@ import AppConfig from './shared/AppConfig';
 import AppRun from './shared/AppRun';
 
 import CrazeAdminHome from './home/home';
+import CrazeAdminPosts from './posts/posts';
 
 const MODULE_NAME = 'CrazeAdmin';
 
@@ -34,7 +35,8 @@ angular.module(MODULE_NAME, [
   'angularSpinner',
   'underscore',
 
-  CrazeAdminHome
+  CrazeAdminHome,
+  CrazeAdminPosts
 ])
   .controller('AppController', AppController)
 
