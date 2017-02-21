@@ -10,7 +10,7 @@ function PostsService($http, $rootScope, UserService) {
         userId: UserService.user.userId,
         brandId: $rootScope.currentBrand,
         offset: offset ? offset : 0,
-        limit: 5
+        limit: 30
       };
 
       return $http({
