@@ -5,6 +5,7 @@ import 'angular-animate';
 import 'angular-cookies';
 import 'angular-touch';
 import 'angularjs-toaster';
+import 'angularjs-toaster/toaster.css';
 import 'angular-spinner';
 import 'ng-infinite-scroll';
 import './shared/underscore';

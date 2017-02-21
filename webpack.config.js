@@ -1,16 +1,11 @@
 'use strict';
 
-// Modules
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-/**
- * Env
- * Get npm lifecycle event to identify the environment
- */
 var ENV = process.env.npm_lifecycle_event;
 var isProd = ENV === 'build';
 
@@ -86,7 +81,6 @@ module.exports = function makeWebpackConfig() {
       // CSS LOADER
       // Reference: https://github.com/webpack/css-loader
       // Allow loading css through js
-      //
       // Reference: https://github.com/webpack-contrib/less-loader
       // Preprocess your css with LESS plugin
       // Reference: https://github.com/postcss/postcss-loader
@@ -106,6 +100,12 @@ module.exports = function makeWebpackConfig() {
           {loader: 'less-loader'}
         ],
       })
+    }, {
+      // CSS LOADER
+      // Reference: https://github.com/webpack/css-loader
+      // Allow loading css through js
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader
@@ -149,7 +149,8 @@ module.exports = function makeWebpackConfig() {
     new webpack.ProvidePlugin({
       $: "jquery/dist/jquery.min.js",
       jQuery: "jquery/dist/jquery.min.js",
-      "window.jQuery": "jquery/dist/jquery.min.js"
+      "window.jQuery": "jquery/dist/jquery.min.js",
+      "window._": 'underscore/underscore-min.js'
     })
   ];
 
