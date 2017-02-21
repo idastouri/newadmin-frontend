@@ -1,14 +1,16 @@
-function PostsService($http, $rootScope, UserService) {
+function PostsService($http, $rootScope, UserService, Config) {
   return {
-    getPosts() {
-      $rootScope.viewLoading = true;
+    getPosts(offset) {
+      if (offset === undefined) {
+        $rootScope.viewLoading = true;
+      }
 
       const params = {
         sessionToken: UserService.sessionToken,
         userId: UserService.user.userId,
         brandId: $rootScope.currentBrand,
-        offset: 0,
-        limit: 5
+        offset: offset ? offset : 0,
+        limit: Config.postsLimit
       };
 
       return $http({
@@ -22,6 +24,6 @@ function PostsService($http, $rootScope, UserService) {
   }
 }
 
-PostsService.$inject = ['$http', '$rootScope', 'UserService'];
+PostsService.$inject = ['$http', '$rootScope', 'UserService', 'Config'];
 
 export default PostsService;

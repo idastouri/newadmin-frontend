@@ -36,7 +36,9 @@ const Config = Object.freeze({
     errors: {
       accessRightsError: 'User is not authenticated for this Environment'
     }
-  }
+  },
+
+  postsLimit: 30
 });
 
 export default Config;

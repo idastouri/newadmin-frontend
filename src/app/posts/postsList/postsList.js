@@ -9,6 +9,7 @@ const postsList = {
 
 function PostsListController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
+    this.isLoadingMorePosts = false;
     this.posts = this.getPreparedPosts(this.posts);
 
     $rootScope.$on('brandChange', () => {
@@ -22,6 +23,15 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
     return posts.map((post) => {
       post.childPostText = $sce.trustAsHtml(post.childPostText);
       return post;
+    });
+  };
+
+  this.loadMorePosts = () => {
+    this.isLoadingMorePosts = true;
+    PostsService.getPosts(this.posts.length).then((response) => {
+      this.posts = this.posts.concat(this.getPreparedPosts(response.data.postJson));
+    }).finally(() => {
+      this.isLoadingMorePosts = false;
     });
   };
 }

@@ -19,6 +19,10 @@ function HeaderController(Config, UserService, $rootScope, toaster) {
     $rootScope.$broadcast('brandChange');
   }
 
+  this.brandChange = () => {
+    $rootScope.$broadcast('brandChange');
+  }
+
   this.logout = () => {
     UserService.logout()
     .catch((serverError) => {
@@ -28,6 +32,5 @@ function HeaderController(Config, UserService, $rootScope, toaster) {
 }
 
 HeaderController.$inject = ['Config', 'UserService', '$rootScope', 'toaster'];
-
 
 export default layoutHeader;

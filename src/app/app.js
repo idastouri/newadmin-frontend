@@ -7,6 +7,7 @@ import 'angular-touch';
 import 'angularjs-toaster';
 import 'angularjs-toaster/toaster.css';
 import 'angular-spinner';
+import 'ng-infinite-scroll';
 import './shared/underscore';
 
 import '../less/app.less';
@@ -35,6 +36,7 @@ angular.module(MODULE_NAME, [
   'toaster',
   'angularSpinner',
   'underscore',
+  'infinite-scroll',
 
   CrazeAdminHome,
   CrazeAdminPosts
