@@ -14,9 +14,6 @@ function PostsService($http, $rootScope, UserService) {
       return $http({
         method: 'POST',
         url: `${$rootScope.currentEnv.apiUrl}/posts/getPostsByCategory`,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
         data: $.param(params)
       }).finally(() => {
         $rootScope.viewLoading = false;

@@ -1,4 +1,4 @@
-function AppConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+function AppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
   $stateProvider
     .state('root', {
       abstract: true,
@@ -8,9 +8,11 @@ function AppConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise("/");
 
   $locationProvider.html5Mode(true);
+
+  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 }
 
-AppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+AppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
 
 export default AppConfig;
 //
