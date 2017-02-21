@@ -1,4 +1,4 @@
-function PostsService($http, $rootScope, UserService) {
+function PostsService($http, $rootScope, UserService, Config) {
   return {
     getPosts(offset) {
       if (offset === undefined) {
@@ -10,7 +10,7 @@ function PostsService($http, $rootScope, UserService) {
         userId: UserService.user.userId,
         brandId: $rootScope.currentBrand,
         offset: offset ? offset : 0,
-        limit: 30
+        limit: Config.postsLimit
       };
 
       return $http({
@@ -24,6 +24,6 @@ function PostsService($http, $rootScope, UserService) {
   }
 }
 
-PostsService.$inject = ['$http', '$rootScope', 'UserService'];
+PostsService.$inject = ['$http', '$rootScope', 'UserService', 'Config'];
 
 export default PostsService;
