@@ -1,4 +1,4 @@
-function AppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+function AppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, usSpinnerConfigProvider) {
   $stateProvider
     .state('root', {
       abstract: true,
@@ -10,9 +10,11 @@ function AppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpP
   $locationProvider.html5Mode(true);
 
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+  usSpinnerConfigProvider.setDefaults({color: '#f8f8f8'});
 }
 
-AppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
+AppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'usSpinnerConfigProvider'];
 
 export default AppConfig;
 //
