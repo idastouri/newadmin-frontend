@@ -27,7 +27,8 @@
       </span>
     </div>
   </nav>
-  <div class="prod-alert" ng-if="$ctrl.env =='Prod'" style="background-color: {{ $ctrl.envs[$ctrl.env.toLowerCase()].titleColor; }}">
+
+  <div class="production-alert" ng-if="$ctrl.env === 'Prod' && $ctrl.showNav" ng-style="{ 'background-color': $ctrl.envs[$ctrl.env.toLowerCase()].titleColor }">
     <b>WARNING: PRODUCTION</b>
   </div>
 </header>
