@@ -3,7 +3,8 @@
   <div ng-show="!$root.viewLoading" ng-repeat="post in $ctrl.posts" class="posts-list__item">
 	  <div class="container">
 	  	<div class="posts-list__item__title">
-	  		<h2>{{ post.postTitle }}</h2><h3><i>{{ post.postTime }}</i></h3>
+	  		<h2>{{ post.postTitle }}</h2>
+        <h3><i>{{ post.postTime }}</i></h3>
 	  	</div>
 	  	<p ng-bind-html="post.postText"></p>
 	    <p ng-bind-html="post.childPostText"></p>
