@@ -4,4 +4,5 @@
     <p ng-bind-html="post.childPostText"></p>
     <hr>
   </div>
+  <p ng-if="$ctrl.posts.length === $ctrl.totalPostCount">No more Posts</p>
 </div>

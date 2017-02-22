@@ -3,7 +3,7 @@ function PostsConfig($stateProvider) {
     .state('posts', {
       url: '/posts',
       controller: 'PostsController as posts',
-      template: '<posts-list posts="posts.posts.postJson"></posts-list>',
+      template: '<posts-list posts="posts.posts.postJson"  total-post-count="posts.posts.totalPostCount"></posts-list>',
       resolve: {
         posts(PostsService) {
           return PostsService.getPosts().then((res) => res.data);

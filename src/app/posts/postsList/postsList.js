@@ -2,7 +2,8 @@ const postsList = {
   restrict: 'E',
   template: require('./postsList.html'),
   bindings: {
-    posts: '<'
+    posts: '<',
+    totalPostCount: '<'
   },
   controller: PostsListController
 }
@@ -15,6 +16,7 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
     $rootScope.$on('brandChange', () => {
       PostsService.getPosts().then((response) => {
         this.posts = this.getPreparedPosts(response.data.postJson);
+        this.totalPostCount = response.data.totalPostCount;
       });
     });
   };
@@ -27,6 +29,7 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
   };
 
   this.loadMorePosts = () => {
+    if (this.posts.length === this.totalPostCount) return;
     this.isLoadingMorePosts = true;
     PostsService.getPosts(this.posts.length).then((response) => {
       this.posts = this.posts.concat(this.getPreparedPosts(response.data.postJson));
