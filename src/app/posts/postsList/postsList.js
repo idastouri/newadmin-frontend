@@ -23,10 +23,6 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
     return posts.map((post) => {
       post.postText = $sce.trustAsHtml(post.postText);
       post.childPostText = $sce.trustAsHtml(post.childPostText);
-      post.childPosts.map((childPost) => {
-        childPost.postText = $sce.trustAsHtml(childPost.postText);
-        childPost.childPostText = $sce.trustAsHtml(childPost.childPostText);
-      })
       return post;
     });
   };
