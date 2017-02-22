@@ -1,7 +1,10 @@
 function PostsService($http, $rootScope, UserService, Config) {
   return {
-    getPosts(offset) {
-      if (offset === undefined) {
+    getPosts(options) {
+
+      var _options = options || {};
+
+      if (_options.offset === undefined) {
         $rootScope.viewLoading = true;
       }
 
@@ -9,8 +12,9 @@ function PostsService($http, $rootScope, UserService, Config) {
         sessionToken: UserService.sessionToken,
         userId: UserService.user.userId,
         brandId: $rootScope.currentBrand,
-        offset: offset ? offset : 0,
-        limit: Config.postsLimit
+        offset: _options.offset || 0,
+        limit: Config.postsLimit,
+        childPostsFlag: _options.getChildren || 1
       };
 
       return $http({

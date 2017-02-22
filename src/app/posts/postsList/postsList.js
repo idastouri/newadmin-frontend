@@ -21,14 +21,19 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
 
   this.getPreparedPosts = (posts) => {
     return posts.map((post) => {
+      post.postText = $sce.trustAsHtml(post.postText);
       post.childPostText = $sce.trustAsHtml(post.childPostText);
+      post.childPosts.map((childPost) => {
+        childPost.postText = $sce.trustAsHtml(childPost.postText);
+        childPost.childPostText = $sce.trustAsHtml(childPost.childPostText);
+      })
       return post;
     });
   };
 
   this.loadMorePosts = () => {
     this.isLoadingMorePosts = true;
-    PostsService.getPosts(this.posts.length).then((response) => {
+    PostsService.getPosts({offset: this.posts.length}).then((response) => {
       this.posts = this.posts.concat(this.getPreparedPosts(response.data.postJson));
     }).finally(() => {
       this.isLoadingMorePosts = false;

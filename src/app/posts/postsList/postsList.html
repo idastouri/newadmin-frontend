@@ -1,7 +1,36 @@
 <h2>Posts</h2>
 <div infinite-scroll="$ctrl.loadMorePosts()" infinite-scroll-disabled='$ctrl.isLoadingMorePosts' class="posts-list">
-  <div ng-show="!$root.viewLoading" ng-repeat="post in $ctrl.posts">
-    <p ng-bind-html="post.childPostText"></p>
-    <hr>
+  <div class="post" ng-show="!$root.viewLoading" ng-repeat="post in $ctrl.posts">
+
+    <div class="parent-post">
+
+      <h2>{{ post.postTitle }}</h2>
+
+      <hr>
+      <div>
+        <p>Post ID: <span>{{ post.postId }}</span></p>
+        <p>Channel doc ID: <span>{{ post.channelDocId }}</span></p>
+        <p>Category doc ID: <span>{{ post.categoryDocId }}</span></p>
+      </div>
+      <hr>
+
+      <p class="post-text" ng-bind-html="post.postText"></p>
+      <p class="small" ng-bind-html="post.childPostText"></p>
+
+      <div class="multi-step-post__container">
+        <div class="multi-step-post__icon">
+
+          <img ng-src="{{ post.thumbnailAsset }}" alt="icon" height="140"></img>
+
+        </div>
+        <div class="multi-step-post__icon" ng-repeat="childPost in post.childPosts">
+
+          <img ng-src="{{ childPost.thumbnailAsset }}" alt="icon" height="140"></img>
+
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </div>
