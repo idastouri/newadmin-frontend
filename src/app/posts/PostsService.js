@@ -2,7 +2,7 @@ function PostsService($http, $rootScope, UserService, Config) {
   return {
     getPosts(options) {
 
-      var _options = options || {};
+      const _options = options || {};
 
       if (_options.offset === undefined) {
         $rootScope.viewLoading = true;
