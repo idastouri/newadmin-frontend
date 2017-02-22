@@ -17,7 +17,3 @@ Go to [http://localhost:8080](http://localhost:8080) in your browser.
 ### Build files
 * single run: `npm run build`
 * build files and watch: `npm start`
-
-```
-arab trap
-```
