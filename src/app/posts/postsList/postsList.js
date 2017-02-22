@@ -24,6 +24,7 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
   this.getPreparedPosts = (posts) => {
     return posts.map((post) => {
       post.childPostText = $sce.trustAsHtml(post.childPostText);
+      post.postText = $sce.trustAsHtml(post.postText);
       return post;
     });
   };
