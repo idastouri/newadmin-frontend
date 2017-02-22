@@ -1,31 +1,31 @@
-.post {
-
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #262626;
-
-  .parent-post {
+.posts-list {
+  &__item {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #262626;
     text-align: justify;
 
-    .multi-step-post__container{
+    &__text {
+      a {
+		    color: #999;
+      }
+ 		}
+
+    &__thumbnails {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      -ms-overflow-style: -ms-autohiding-scrollbar;
 
-      .multi-step-post__icon {
-        position: relative;
+      &__item {
         background-color: white;
 
         img {
-          margin: 5px;
+          height: 7rem;
+          margin: 0.5rem;
         }
       }
-
     }
-
   }
 }
