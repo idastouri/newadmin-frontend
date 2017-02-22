@@ -19,10 +19,6 @@ function HeaderController(Config, UserService, $rootScope, toaster) {
     $rootScope.$broadcast('brandChange');
   }
 
-  this.brandChange = () => {
-    $rootScope.$broadcast('brandChange');
-  }
-
   this.logout = () => {
     UserService.logout()
     .catch((serverError) => {
