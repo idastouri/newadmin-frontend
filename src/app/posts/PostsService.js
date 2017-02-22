@@ -1,16 +1,15 @@
 function PostsService($http, $rootScope, UserService, Config) {
   return {
-    getPosts(offset) {
-      if (offset === undefined) {
-        $rootScope.viewLoading = true;
-      }
+    getPosts({ offset = 0, getChildren = 1} = {}) {
+      $rootScope.viewLoading = true;
 
       const params = {
         sessionToken: UserService.sessionToken,
         userId: UserService.user.userId,
         brandId: $rootScope.currentBrand,
-        offset: offset ? offset : 0,
-        limit: Config.postsLimit
+        offset: offset,
+        limit: Config.postsLimit,
+        childPostsFlag: getChildren
       };
 
       return $http({

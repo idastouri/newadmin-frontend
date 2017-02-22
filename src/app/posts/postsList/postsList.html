@@ -1,8 +1,28 @@
 <h2>Posts</h2>
 <div infinite-scroll="$ctrl.loadMorePosts()" infinite-scroll-disabled='$ctrl.isLoadingMorePosts' class="posts-list">
-  <div ng-show="!$root.viewLoading" ng-repeat="post in $ctrl.posts">
-    <p ng-bind-html="post.childPostText"></p>
+  <div class="posts-list__item" ng-repeat="post in $ctrl.posts">
+    <h2>{{ post.postTitle }}</h2>
+
     <hr>
+    <div>
+      <p>Post ID: <span>{{ post.postId }}</span></p>
+      <p>Channel doc ID: <span>{{ post.channelDocId }}</span></p>
+      <p>Category doc ID: <span>{{ post.categoryDocId }}</span></p>
+    </div>
+    <hr>
+
+    <p class="posts-list__item__text" ng-bind-html="post.postText"></p>
+    <p class="posts-list__item__text small" ng-bind-html="post.childPostText"></p>
+
+    <div class="posts-list__item__thumbnails">
+      <div class="posts-list__item__thumbnails__item">
+        <img ng-src="{{ post.thumbnailAsset }}" alt="icon">
+      </div>
+
+      <div class="posts-list__item__thumbnails__item" ng-repeat="childPost in post.childPosts">
+        <img ng-src="{{ childPost.thumbnailAsset }}" alt="icon">
+      </div>
+    </div>
   </div>
   <p ng-if="$ctrl.posts.length === $ctrl.totalPostCount">No more Posts</p>
 </div>

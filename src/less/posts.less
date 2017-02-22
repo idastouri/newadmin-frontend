@@ -1,0 +1,31 @@
+.posts-list {
+  &__item {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #262626;
+    text-align: justify;
+
+    &__text {
+      a {
+		    color: #999;
+      }
+ 		}
+
+    &__thumbnails {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+
+      &__item {
+        background-color: white;
+
+        img {
+          height: 7rem;
+          margin: 0.5rem;
+        }
+      }
+    }
+  }
+}

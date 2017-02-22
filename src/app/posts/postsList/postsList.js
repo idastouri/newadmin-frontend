@@ -23,6 +23,7 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
 
   this.getPreparedPosts = (posts) => {
     return posts.map((post) => {
+      post.postText = $sce.trustAsHtml(post.postText);
       post.childPostText = $sce.trustAsHtml(post.childPostText);
       return post;
     });
@@ -31,7 +32,7 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
   this.loadMorePosts = () => {
     if (this.posts.length === this.totalPostCount) return;
     this.isLoadingMorePosts = true;
-    PostsService.getPosts(this.posts.length).then((response) => {
+    PostsService.getPosts({offset: this.posts.length}).then((response) => {
       this.posts = this.posts.concat(this.getPreparedPosts(response.data.postJson));
     }).finally(() => {
       this.isLoadingMorePosts = false;
