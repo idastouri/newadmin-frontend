@@ -14,15 +14,24 @@
     <p class="posts-list__item__text" ng-bind-html="post.postText"></p>
     <p class="posts-list__item__text small" ng-bind-html="post.childPostText"></p>
 
+    <div class="posts-list__item__featured-date" ng-if="post.featuredStartDate && post.featuredEndDate">{{ post.featuredStartDate }} - {{ post.featuredEndDate }}</div>
     <div class="posts-list__item__thumbnails">
       <div class="posts-list__item__thumbnails__item">
+        <div class="posts-list__item__thumbnails__item__icon-edit" ng-click="$ctrl.editPost(post)">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </div>
         <img ng-src="{{ post.thumbnailAsset }}" alt="icon">
       </div>
 
       <div class="posts-list__item__thumbnails__item" ng-repeat="childPost in post.childPosts">
+        <div class="posts-list__item__thumbnails__item__icon-edit" ng-click="$ctrl.editPost(childPost)">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </div>
         <img ng-src="{{ childPost.thumbnailAsset }}" alt="icon">
       </div>
     </div>
   </div>
   <p ng-if="$ctrl.posts.length === $ctrl.totalPostCount">No more Posts</p>
 </div>
+
+<edit-post-modal post-json="$ctrl.editPostJson" ng-if="$ctrl.showEditPostModal"></edit-post-modal>

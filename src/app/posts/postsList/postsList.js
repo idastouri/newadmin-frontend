@@ -11,6 +11,8 @@ const postsList = {
 function PostsListController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
     this.isLoadingMorePosts = false;
+    this.showEditPostModal = false;
+    this.postsJson = angular.copy(this.posts);
     this.posts = this.getPreparedPosts(this.posts);
 
     $rootScope.$on('brandChange', () => {
@@ -18,6 +20,10 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
         this.posts = this.getPreparedPosts(response.data.postJson);
         this.totalPostCount = response.data.totalPostCount;
       });
+    });
+
+    $rootScope.$on('closeEditPostModal', () => {
+      this.showEditPostModal = false;
     });
   };
 
@@ -38,6 +44,11 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
       this.isLoadingMorePosts = false;
     });
   };
+
+  this.editPost = (post) => {
+    this.editPostJson = post;
+    this.showEditPostModal = true;
+  }
 }
 
 PostsListController.$inject = ['$rootScope', '$state', 'PostsService', '$sce'];

@@ -1,0 +1,18 @@
+<div class="edit-post-modal">
+  <div class="edit-post-modal__header">
+    <h4>Edit: {{$ctrl.postJson.postTitle}}</h4>
+    <div class="edit-post-modal__header__tools">
+      <span ng-click="$ctrl.closeModal()" class="edit-post-modal__header__tools__tool glyphicon glyphicon-remove" title="Close"></span>
+      <span ng-click="$ctrl.saveChanges()" class="edit-post-modal__header__tools__tool glyphicon glyphicon-save" title="Save"></span>
+    </div>
+  </div>
+  <hr>
+
+  <div class="edit-post-modal__body">
+    <form novalidate name="$ctrl.editPostForm">
+      <div ng-show="$ctrl.editPostForm.$error.jsonParseError" class="edit-post-modal__body__json-parse-error">Parse error!</div>
+      <textarea class="form-control" ng-model="$ctrl.postJsonStr" ng-change="changePost()" spellcheck="false" cols="50" rows="20"></textarea>
+    </form>
+    <div ng-jsoneditor ng-model="$ctrl.postJson" options="$ctrl.editJsonOptions" style="width: 400px; height: 300px;"></div>
+  </div>
+</div>

@@ -21,11 +21,66 @@
       &__item {
         background-color: white;
 
+        &__icon-edit {
+          text-align: right;
+          margin: 0.5rem 0.5rem 0 0;
+        }
+
+        &:hover &__icon-edit {
+          color: gray;
+        }
+
+
         img {
           height: 7rem;
           margin: 0.5rem;
         }
       }
     }
+  }
+}
+
+
+.edit-post-modal {
+  padding: 2rem 5rem 2rem 5rem;
+  color: #333333;
+  text-align: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 5% 10% 5% 10%;
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  z-index: 1;
+  overflow: auto;
+  box-shadow: 0 0 10rem black;
+
+  &__header {
+    &__tools {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 1rem 1rem 0 0;
+      color: gray;
+
+      &__tool {
+        opacity: 0.5;
+        display: block;
+        margin-bottom: 0.8rem;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__body {
+
+    &__json-parse-error {
+      color: red;
+    }
+
   }
 }
