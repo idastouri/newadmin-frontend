@@ -10,7 +10,8 @@ const editPostModal = {
 function EditPostController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
     this.postJsonStr = angular.toJson(this.postJson, true);
-    // for ng-jsoneditor
+
+    // Options for angular-jsoneditor
     this.editJsonOptions = {mode: "tree"};
   };
 
