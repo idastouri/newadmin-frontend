@@ -1,0 +1,28 @@
+<div class="posts-list__item">
+	<h2>{{ $ctrl.post.postTitle }}</h2>
+
+    <hr>
+    <div>
+      <p>Post ID: <span>{{ $ctrl.post.postId }}</span></p>
+      <p>Channel doc ID: <span>{{ $ctrl.post.channelDocId }}</span></p>
+      <p>Category doc ID: <span>{{ $ctrl.post.categoryDocId }}</span></p>
+    </div>
+    <hr>
+    <div>
+      <p class="posts-list__item__text" ng-bind-html="$ctrl.postContent"></p>
+      <p ng-show="$ctrl.isExpanded" class="posts-list__item__text small" ng-bind-html="$ctrl.post.childPostText"></p>
+      <a ng-show="!$ctrl.isExpanded" href="#" ng-click="$ctrl.expand()">Show more</a>
+      <a ng-show="$ctrl.isExpanded" href="#" ng-click="$ctrl.hide()">Show less</a>
+    </div>
+    
+
+    <div class="posts-list__item__thumbnails">
+      <div class="posts-list__item__thumbnails__item">
+        <img ng-src="{{ post.thumbnailAsset }}" alt="icon">
+      </div>
+
+      <div class="posts-list__item__thumbnails__item" ng-repeat="childPost in $ctrl.post.childPosts">
+        <img ng-src="{{ childPost.thumbnailAsset }}" alt="icon">
+      </div>
+    </div>
+</div>
