@@ -7,20 +7,17 @@ const postItem = {
   controller: PostItemController
 }
 
-function PostItemController($rootScope, $sce, $filter) {
+function PostItemController($rootScope, $sce) {
   this.$onInit = () => {
     this.isExpanded = false;
-    this.limit = 256;
     this.postContent = $sce.trustAsHtml(this.truncate(this.post.postText));
   };
   this.expand = () => {
     this.isExpanded = true;
-    this.limit = Infinity;
     this.postContent = $sce.trustAsHtml(this.post.postText);
   }
   this.hide = () => {
     this.isExpanded = false;
-    this.limit = 256;
     this.postContent = $sce.trustAsHtml(this.truncate(this.post.postText));
   }
   this.truncate = (text) => {
@@ -28,6 +25,6 @@ function PostItemController($rootScope, $sce, $filter) {
   }
 }
 
-PostItemController.$inject = ['$rootScope', '$sce', '$filter'];
+PostItemController.$inject = ['$rootScope', '$sce'];
 
 export default postItem;
