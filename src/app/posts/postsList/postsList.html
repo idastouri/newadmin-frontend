@@ -14,7 +14,10 @@
     <p class="posts-list__item__text" ng-bind-html="post.postText"></p>
     <p class="posts-list__item__text small" ng-bind-html="post.childPostText"></p>
 
-    <div class="posts-list__item__featured-date" ng-if="post.featuredStartDate && post.featuredEndDate">{{ post.featuredStartDate }} - {{ post.featuredEndDate }}</div>
+    <div class="posts-list__item__featured-date" ng-if="post.featuredStartDate && post.featuredEndDate">
+      <p>Featured start date: {{ post.featuredStartDate }}</p>
+      <p>Featured end date: {{ post.featuredEndDate }}</p>
+    </div>
     <div class="posts-list__item__thumbnails">
       <div class="posts-list__item__thumbnails__item">
         <div class="posts-list__item__thumbnails__item__icon-edit" ng-click="$ctrl.editPost(post)">

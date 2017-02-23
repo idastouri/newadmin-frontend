@@ -9,9 +9,6 @@
   <hr>
 
   <div class="edit-post-modal__body">
-    <form novalidate name="$ctrl.editPostForm">
-      <div ng-show="$ctrl.editPostForm.$error.jsonParseError" class="edit-post-modal__body__json-parse-error">Parse error!</div>
-    </form>
-    <angular-jsoneditor ng-model="$ctrl.postJson" options="$ctrl.editJsonOptions" style="width: 100%; height: 400px;"></angular-jsoneditor>
+    <angular-jsoneditor ng-model="$ctrl.postJsonForChange" options="$ctrl.jsoneditorOptions" class="edit-post-modal__body__jsoneditor"></angular-jsoneditor>
   </div>
 </div>

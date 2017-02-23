@@ -9,23 +9,14 @@ const editPostModal = {
 
 function EditPostController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
-    this.postJsonStr = angular.toJson(this.postJson, true);
-
-    // Options for angular-jsoneditor
-    this.editJsonOptions = {mode: "tree"};
+    this.postJsonForChange = angular.copy(this.postJson);
+    this.jsoneditorOptions = {mode: "tree"};
   };
 
-  this.changePost = () => {
-    this.editPostForm.$setValidity('jsonParseError', false);
-  }
-
   this.saveChanges = () => {
-    try {
-      this.postJson = angular.fromJson(this.postJsonStr);
-    }
-    catch(err) {
-      this.editPostForm.$setValidity('jsonParseError', true);
-    }
+    //
+    //  Call to backend for saving;
+    //
   };
 
   this.closeModal = () => {
