@@ -11,7 +11,7 @@ function EditPostController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
     this.postJsonStr = angular.toJson(this.postJson, true);
     // for ng-jsoneditor
-    this.editPostOptions = {mode: "tree"};
+    this.editJsonOptions = {mode: "tree"};
   };
 
   this.changePost = () => {
