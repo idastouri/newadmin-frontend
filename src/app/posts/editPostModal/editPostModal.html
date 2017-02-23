@@ -1,13 +1,10 @@
-<div class="edit-post-modal">
-  <div class="edit-post-modal__header">
-    <h4>Edit: {{$ctrl.postJson.postTitle}}</h4>
-    <div class="edit-post-modal__header__tools">
-      <span ng-click="$ctrl.closeModal()" class="edit-post-modal__header__tools__tool glyphicon glyphicon-remove" title="Close"></span>
-      <span ng-click="$ctrl.saveChanges()" class="edit-post-modal__header__tools__tool glyphicon glyphicon-ok" title="Save"></span>
-    </div>
-  </div>
-
-  <div class="edit-post-modal__body">
-    <angular-jsoneditor ng-model="$ctrl.postJsonForChange" options="$ctrl.jsoneditorOptions" class="edit-post-modal__body__jsoneditor"></angular-jsoneditor>
-  </div>
+<div class="modal-header dark-text">
+  <h4>Edit: {{$ctrl.newPost.postTitle}}</h4>
+</div>
+<div class="modal-body" id="modal-body">
+  <angular-jsoneditor ng-model="$ctrl.newPost" options="$ctrl.jsoneditorOptions" class="edit-post-modal__body__jsoneditor"></angular-jsoneditor>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="$ctrl.save()">Save</button>
+  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
 </div>

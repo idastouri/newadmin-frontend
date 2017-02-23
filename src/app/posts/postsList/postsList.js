@@ -8,10 +8,9 @@ const postsList = {
   controller: PostsListController
 }
 
-function PostsListController($rootScope, $state, PostsService, $sce) {
+function PostsListController($rootScope, $state, PostsService, $sce, $uibModal, toaster) {
   this.$onInit = () => {
     this.isLoadingMorePosts = false;
-    this.showEditPostModal = false;
     this.isFeaturedPosts = false;
     this.postsJson = angular.copy(this.posts);
     this.posts = this.getPreparedPosts(this.posts);
@@ -51,13 +50,26 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
   };
 
   this.editPost = (post) => {
-    this.editPostJson = post;
-    this.showEditPostModal = true;
+    var modalInstance = $uibModal.open({
+      animation: true,
+      component: 'editPostModal',
+      resolve: {
+        post: function () {
+          return post;
+        }
+      }
+    });
+
+    modalInstance.result.then((newPost) => {
+      // Compare with 'post' and call to backend
+    }, () => {
+      toaster.error('Oops', 'Modal error!'); // Fix me
+    });
   };
 
   this.checkFeaturedPosts = () => this.fetchPosts({isFeaturedPosts: this.isFeaturedPosts});
 }
 
-PostsListController.$inject = ['$rootScope', '$state', 'PostsService', '$sce'];
+PostsListController.$inject = ['$rootScope', '$state', 'PostsService', '$sce', '$uibModal', 'toaster'];
 
 export default postsList;
