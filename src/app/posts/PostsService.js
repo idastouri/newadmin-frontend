@@ -1,6 +1,6 @@
 function PostsService($http, $rootScope, UserService, Config) {
   return {
-    getPosts({ offset = 0, getChildren = 1} = {}) {
+    getPosts({ offset = 0, getChildren = 1, isFeaturedPosts = 0} = {}) {
       $rootScope.viewLoading = true;
 
       const params = {
@@ -9,7 +9,8 @@ function PostsService($http, $rootScope, UserService, Config) {
         brandId: $rootScope.currentBrand,
         offset: offset,
         limit: Config.postsLimit,
-        childPostsFlag: getChildren
+        childPostsFlag: getChildren,
+        featuredFlag: isFeaturedPosts | 0
       };
 
       return $http({
