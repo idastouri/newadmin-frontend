@@ -1,6 +1,7 @@
 import PostsController from './PostsController';
 
 import postsList from './postsList/postsList';
+import editPostModal from './editPostModal/editPostModal.js';
 
 import postItem from './postItem/postItem';
 
@@ -14,6 +15,7 @@ angular.module(MODULE_NAME, [])
   .controller('PostsController', PostsController)
 
   .component('postsList', postsList)
+  .component('editPostModal', editPostModal)
 
   .component('postItem', postItem)
 

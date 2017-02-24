@@ -1,10 +1,18 @@
 .posts-list {
+  .featured-posts-checkbox {
+    margin: 0.5rem;
+  }
+
   &__item {
     margin: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.25rem;
     background-color: #262626;
     text-align: justify;
+
+    .btn--expand-post-text {
+      margin-bottom: 15px;
+    }
 
     &__text {
       a {
@@ -20,6 +28,18 @@
 
       &__item {
         background-color: white;
+        position: relative;
+
+        &__icon-edit {
+          position: absolute;
+          right: 0.5rem;
+          top: 0.5rem;
+          color: black;
+        }
+
+        &:hover &__icon-edit {
+          cursor: pointer;
+        }
 
         img {
           height: 7rem;

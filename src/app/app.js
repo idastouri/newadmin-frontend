@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-jsoneditor';
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';
 import 'angular-animate';
@@ -33,6 +34,7 @@ angular.module(MODULE_NAME, [
   'ngAnimate',
   'ngTouch',
   'ngCookies',
+  'angular-jsoneditor',
   'toaster',
   'angularSpinner',
   'underscore',

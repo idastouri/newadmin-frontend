@@ -151,7 +151,8 @@ module.exports = function makeWebpackConfig() {
       jQuery: "jquery/dist/jquery.min.js",
       "window.jQuery": "jquery/dist/jquery.min.js",
       "window._": 'underscore/underscore-min.js'
-    })
+    }),
+    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/)
   ];
 
   // Reference: https://github.com/ampedandwired/html-webpack-plugin
