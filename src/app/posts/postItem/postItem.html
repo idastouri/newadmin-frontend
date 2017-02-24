@@ -11,8 +11,8 @@
     <div>
       <p class="posts-list__item__text" ng-bind-html="$ctrl.postContent"></p>
       <p ng-show="$ctrl.isExpanded" class="posts-list__item__text small" ng-bind-html="$ctrl.post.childPostText"></p>
-      <a ng-show="!$ctrl.isExpanded" href="#" ng-click="$ctrl.expand()">Show more</a>
-      <a ng-show="$ctrl.isExpanded" href="#" ng-click="$ctrl.hide()">Show less</a>
+      <a ng-show="!$ctrl.isExpanded" href="#" ng-click="$ctrl.resize('expand')">Show more</a>
+      <a ng-show="$ctrl.isExpanded" href="#" ng-click="$ctrl.resize('reduce')">Show less</a>
     </div>
     
 

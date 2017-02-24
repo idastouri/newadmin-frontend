@@ -2,7 +2,7 @@ import PostsController from './PostsController';
 
 import postsList from './postsList/postsList';
 
-import postItem from './postsList/postItem';
+import postItem from './postItem/postItem';
 
 import PostsService from './PostsService';
 
