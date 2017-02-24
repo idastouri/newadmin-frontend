@@ -1,4 +1,4 @@
-### Quick start
+## Quick start
 
 ```
 # install the dependencies with npm
@@ -11,14 +11,14 @@ It will start a local server using `webpack-dev-server` which will watch, build 
 
 Go to [http://localhost:8080](http://localhost:8080) in your browser.
 
-### Build files for production
+## Build files for production
 * single run: `npm run build`
 * build files and watch: `npm start`
 
-## Dependencies
+### Dependencies
 * Ensure you're running Node (`v4.1.x`+) and NPM (`2.14.x`+)
 
-## Notes
+### Notes
 * If you need some helper function from Underscore.js, please import it similar to this:
 ```
 import { isUndefined } from 'underscore';
