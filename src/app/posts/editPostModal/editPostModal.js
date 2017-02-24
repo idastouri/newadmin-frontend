@@ -2,28 +2,30 @@ const editPostModal = {
   restrict: 'E',
   template: require('./editPostModal.html'),
   bindings: {
-    postJson: '=',
+    resolve: '<',
+    close: '&',
+    dismiss: '&'
   },
   controller: EditPostController
 }
 
-function EditPostController($rootScope, $state, PostsService, $sce) {
+
+function EditPostController() {
   this.$onInit = () => {
-    this.postJsonForChange = angular.copy(this.postJson);
+    this.oldPost = this.resolve.post;
+    this.newPost = angular.copy(this.resolve.post);
     this.jsoneditorOptions = {mode: "tree"};
   };
 
-  this.saveChanges = () => {
-    //
-    //  Call to backend for saving;
-    //
-  };
+  this.save = () => {
+    this.close({$value: this.newPost});
+  }
 
-  this.closeModal = () => {
-    $rootScope.$emit('closeEditPostModal');
+  this.cancel = () => {
+    this.close({$value: this.oldPost});
   }
 }
 
-EditPostController.$inject = ['$rootScope', '$state', 'PostsService', '$sce'];
+EditPostController.$inject = [];
 
 export default editPostModal;
