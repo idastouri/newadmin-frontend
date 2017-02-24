@@ -13,7 +13,7 @@ function PostItemController($rootScope, $sce, $uibModal, toaster) {
   };
 
   this.editPost = (post) => {
-    var modalInstance = $uibModal.open({
+    const modalInstance = $uibModal.open({
       animation: true,
       component: 'editPostModal',
       size: 'lg',
