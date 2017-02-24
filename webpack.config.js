@@ -149,10 +149,8 @@ module.exports = function makeWebpackConfig() {
     new webpack.ProvidePlugin({
       $: "jquery/dist/jquery.min.js",
       jQuery: "jquery/dist/jquery.min.js",
-      "window.jQuery": "jquery/dist/jquery.min.js",
-      "window._": 'underscore/underscore-min.js'
-    }),
-    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/)
+      "window.jQuery": "jquery/dist/jquery.min.js"
+    })
   ];
 
   // Reference: https://github.com/ampedandwired/html-webpack-plugin

@@ -17,10 +17,10 @@
     <a ng-show="$ctrl.isExpanded" href="#" ng-click="$ctrl.resize('reduce')" class="btn btn-default btn--expand-post-text">Show less</a>
   </div>
 
-  <div class="posts-list__item__featured-date" ng-if="$ctrl.post.featuredDisplayOrder && $ctrl.post.featuredStartDate && $ctrl.post.featuredEndDate">
-    <p>Featured display order: {{ $ctrl.post.featuredDisplayOrder }}</p>
-    <p>Featured start date: {{ $ctrl.post.featuredStartDate }}</p>
-    <p>Featured end date: {{ $ctrl.post.featuredEndDate }}</p>
+  <div class="posts-list__item__featured-post-info" ng-if="$ctrl.post.featuredDisplayOrder || $ctrl.post.featuredStartDate || $ctrl.post.featuredEndDate">
+    <p ng-if="$ctrl.post.featuredDisplayOrder">Featured display order: {{ $ctrl.post.featuredDisplayOrder }}</p>
+    <p ng-if="$ctrl.post.featuredStartDate">Featured start date: {{ $ctrl.post.featuredStartDate }}</p>
+    <p ng-if="$ctrl.post.featuredEndDate">Featured end date: {{ $ctrl.post.featuredEndDate }}</p>
   </div>
 
   <div class="posts-list__item__thumbnails">
