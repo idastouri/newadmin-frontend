@@ -8,7 +8,7 @@ const postsList = {
   controller: PostsListController
 }
 
-function PostsListController($rootScope, $state, PostsService, $sce, $uibModal, toaster) {
+function PostsListController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
     this.isLoadingMorePosts = false;
     this.isFeaturedPosts = false;
@@ -27,13 +27,8 @@ function PostsListController($rootScope, $state, PostsService, $sce, $uibModal, 
     });
   };
 
-  $rootScope.$on('closeEditPostModal', () => {
-    this.showEditPostModal = false;
-  });
-
   this.getPreparedPosts = (posts) => {
     return posts.map((post) => {
-      post.postText = $sce.trustAsHtml(post.postText);
       post.childPostText = $sce.trustAsHtml(post.childPostText);
       return post;
     });
@@ -41,6 +36,7 @@ function PostsListController($rootScope, $state, PostsService, $sce, $uibModal, 
 
   this.loadMorePosts = () => {
     if (this.posts.length === this.totalPostCount) return;
+
     this.isLoadingMorePosts = true;
     PostsService.getPosts({offset: this.posts.length, isFeaturedPosts: this.isFeaturedPosts}).then((response) => {
       this.posts = this.posts.concat(this.getPreparedPosts(response.data.postJson));
@@ -49,27 +45,11 @@ function PostsListController($rootScope, $state, PostsService, $sce, $uibModal, 
     });
   };
 
-  this.editPost = (post) => {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      component: 'editPostModal',
-      resolve: {
-        post: function () {
-          return post;
-        }
-      }
-    });
 
-    modalInstance.result.then((newPost) => {
-      // Compare with 'post' and call to backend
-    }, () => {
-      toaster.error('Oops', 'Modal error!'); // Fix me
-    });
-  };
 
   this.checkFeaturedPosts = () => this.fetchPosts({isFeaturedPosts: this.isFeaturedPosts});
 }
 
-PostsListController.$inject = ['$rootScope', '$state', 'PostsService', '$sce', '$uibModal', 'toaster'];
+PostsListController.$inject = ['$rootScope', '$state', 'PostsService', '$sce'];
 
 export default postsList;

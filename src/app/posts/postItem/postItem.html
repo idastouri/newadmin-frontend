@@ -1,0 +1,42 @@
+<div class="posts-list__item">
+	<h2>{{ $ctrl.post.postTitle }}</h2>
+
+  <hr>
+  <div>
+    <p>Post ID: <span>{{ $ctrl.post.postId }}</span></p>
+    <p>Channel doc ID: <span>{{ $ctrl.post.channelDocId }}</span></p>
+    <p>Category doc ID: <span>{{ $ctrl.post.categoryDocId }}</span></p>
+  </div>
+  <hr>
+
+  <div class="posts-list__item__text__container">
+    <p class="posts-list__item__text" ng-bind-html="$ctrl.postContent"></p>
+    <p ng-show="$ctrl.isExpanded" class="posts-list__item__text small" ng-bind-html="$ctrl.post.childPostText"></p>
+
+    <a ng-show="!$ctrl.isExpanded" href="#" ng-click="$ctrl.resize('expand')" class="btn btn-default btn--expand-post-text">Show more</a>
+    <a ng-show="$ctrl.isExpanded" href="#" ng-click="$ctrl.resize('reduce')" class="btn btn-default btn--expand-post-text">Show less</a>
+  </div>
+
+  <div class="posts-list__item__featured-date" ng-if="$ctrl.post.featuredStartDate && $ctrl.post.featuredEndDate">
+    <p>Featured start date: {{ $ctrl.post.featuredStartDate }}</p>
+    <p>Featured end date: {{ $ctrl.post.featuredEndDate }}</p>
+  </div>
+
+  <div class="posts-list__item__thumbnails">
+    <div class="posts-list__item__thumbnails__item">
+      <div class="posts-list__item__thumbnails__item__icon-edit" ng-click="$ctrl.editPost($ctrl.post)">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </div>
+
+      <img ng-src="{{ $ctrl.post.thumbnailAsset }}" alt="icon">
+    </div>
+
+    <div class="posts-list__item__thumbnails__item" ng-repeat="childPost in $ctrl.post.childPosts">
+      <div class="posts-list__item__thumbnails__item__icon-edit" ng-click="$ctrl.editPost(childPost)">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </div>
+
+      <img ng-src="{{ childPost.thumbnailAsset }}" alt="icon">
+    </div>
+  </div>
+</div>
