@@ -22,7 +22,7 @@ function EditPostController() {
   }
 
   this.cancel = () => {
-    this.close({$value: this.oldPost});
+    this.close({$value: null});
   }
 }
 
