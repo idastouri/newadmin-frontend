@@ -7,7 +7,7 @@ const postItem = {
   controller: PostItemController
 }
 
-function PostItemController($rootScope, $sce, $uibModal, toaster) {
+function PostItemController($rootScope, $sce, $uibModal, toaster, PostsService) {
   this.$onInit = () => {
     this.resize('reduce');
   };
@@ -25,7 +25,13 @@ function PostItemController($rootScope, $sce, $uibModal, toaster) {
     });
 
     modalInstance.result.then((newPost) => {
-      // Compare with 'post' and call to backend
+      if (newPost) {
+        PostsService.updatePost(newPost).then(({data}) => {
+          if (data._responseStatus === 0) {
+            toaster.error('', data.msg);
+          }
+        });
+      }
     }, () => {
       toaster.error('Oops', 'Modal error!'); // Fix me
     });
@@ -46,6 +52,6 @@ function PostItemController($rootScope, $sce, $uibModal, toaster) {
   }
 }
 
-PostItemController.$inject = ['$rootScope', '$sce', '$uibModal', 'toaster'];
+PostItemController.$inject = ['$rootScope', '$sce', '$uibModal', 'toaster', 'PostsService'];
 
 export default postItem;

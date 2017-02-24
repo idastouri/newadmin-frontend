@@ -1,8 +1,10 @@
-function AppRun($rootScope, $state, $cookies, _, Config, UserService) {
+import { isEqual } from 'underscore';
+
+function AppRun($rootScope, $state, $cookies, Config, UserService) {
   // define some helper methods for use in routing config below
   const routingHelper = {
     isCurrentState(toState, toParams) {
-      return $state.is(toState) && _.isEqual($state.params, toParams);
+      return $state.is(toState) && isEqual($state.params, toParams);
     }
   };
 
@@ -36,6 +38,6 @@ function AppRun($rootScope, $state, $cookies, _, Config, UserService) {
   $rootScope.currentUser = UserService.user;
 }
 
-AppRun.$inject = ['$rootScope', '$state', '$cookies', '_', 'Config', 'UserService'];
+AppRun.$inject = ['$rootScope', '$state', '$cookies', 'Config', 'UserService'];
 
 export default AppRun;

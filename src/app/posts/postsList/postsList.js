@@ -45,8 +45,6 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
     });
   };
 
-
-
   this.checkFeaturedPosts = () => this.fetchPosts({isFeaturedPosts: this.isFeaturedPosts});
 }
 
