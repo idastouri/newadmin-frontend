@@ -11,12 +11,15 @@ const postsList = {
 function PostsListController($rootScope, $state, PostsService, $sce) {
   this.$onInit = () => {
     this.isLoadingMorePosts = false;
-    this.isFeaturedPosts = false;
+    this.filtersPosts = {
+      isFeaturedPosts: false,
+      orderBy: 'date'
+    };
     this.postsJson = angular.copy(this.posts);
     this.posts = this.getPreparedPosts(this.posts);
 
     $rootScope.$on('brandChange', () => {
-      this.fetchPosts({isFeaturedPosts: this.isFeaturedPosts});
+      this.fetchPosts(this.filtersPosts);
     });
   };
 
@@ -38,14 +41,14 @@ function PostsListController($rootScope, $state, PostsService, $sce) {
     if (this.posts.length === this.totalPostCount) return;
 
     this.isLoadingMorePosts = true;
-    PostsService.getPosts({offset: this.posts.length, isFeaturedPosts: this.isFeaturedPosts}).then((response) => {
+    PostsService.getPosts(Object.assign({offset: this.posts.length}, this.filtersPosts)).then((response) => {
       this.posts = this.posts.concat(this.getPreparedPosts(response.data.postJson));
     }).finally(() => {
       this.isLoadingMorePosts = false;
     });
   };
 
-  this.checkFeaturedPosts = () => this.fetchPosts({isFeaturedPosts: this.isFeaturedPosts});
+  this.setPostFilter = () => this.fetchPosts(this.filtersPosts);
 }
 
 PostsListController.$inject = ['$rootScope', '$state', 'PostsService', '$sce'];

@@ -1,6 +1,6 @@
 function PostsService($http, $rootScope, UserService, Config) {
   return {
-    getPosts({ offset = 0, getChildren = 1, isFeaturedPosts = 0} = {}) {
+    getPosts({ offset = 0, getChildren = 1, isFeaturedPosts = 0, orderBy = 'date'} = {}) {
       $rootScope.viewLoading = true;
 
       const params = {
@@ -11,6 +11,7 @@ function PostsService($http, $rootScope, UserService, Config) {
         limit: Config.postsLimit,
         childPostsFlag: getChildren,
         featuredFlag: isFeaturedPosts | 0,
+        orderBy: orderBy,
         userFlag: 0,
         userStatsFlag: 0,
         channelFlag: 0
