@@ -1,7 +1,18 @@
 <h2>Posts</h2>
 
-<div class="checkbox featured-posts-checkbox text-right">
-  <label><input type="checkbox" ng-model="$ctrl.isFeaturedPosts" ng-click="$ctrl.checkFeaturedPosts()">Featured Posts</label>
+<div class="row">
+  <div class="col-xs-offset-8 col-xs-2">
+    <select ng-model="$ctrl.filtersPosts.orderBy" ng-change="$ctrl.setPostFilter()" class="form-control order-by">
+      <option value="date" selected>New</option>
+      <option value="score">Popular</option>
+    </select>
+  </div>
+
+  <div class="col-xs-2">
+    <div class="checkbox featured-posts-checkbox text-right">
+      <label><input type="checkbox" ng-model="$ctrl.filtersPosts.isFeaturedPosts" ng-click="$ctrl.setPostFilter()">Featured Posts</label>
+    </div>
+  </div>
 </div>
 
 <div infinite-scroll="$ctrl.loadMorePosts()" infinite-scroll-disabled="$ctrl.isLoadingMorePosts" class="posts-list">
